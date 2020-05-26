@@ -1,21 +1,36 @@
+""" PYGAME - Sample game for learning """
+
 import sys
+from copy import copy
+
 import pygame
 
-from copy import copy
-from objects.window import Windows
+from constants import Colors, Snake, Window
 from objects.block import Block
 from objects.food import Food
 from objects.snake import Snake as Python
-from constants import Window, Colors, Snake
+from objects.window import Windows
 
 
 def setup(display: Window, title: Window) -> Windows:
+    """ Setup pygame display
+
+    Arguments:
+        display {Window} -- Window enum conataining dimensions
+        title {Window} -- Title
+
+    Returns:
+        Windows -- Windows object
+    """
     obj = Windows(display.value)
     obj.set_window_title(title.value)
+
     return obj
 
 
 def game_loop():
+    """ Runs game loop """
+
     snake_block = Snake.BLOCK_SIZE.value
 
     game_over = False
@@ -30,15 +45,15 @@ def game_loop():
     snake_size = []
     snake_length = 1
 
-    food.random_position(snake_block)
+    FOOD.random_position(snake_block)
 
     while not game_over:
 
         while close_game:
-            window.fill(Colors.BLACK.value)
-            window.display_score(str(snake_length - 1))
-            window.display_message()
-            window.refresh()
+            WINDOW.fill(Colors.BLACK)
+            WINDOW.display_score(snake_length - 1)
+            WINDOW.display_message()
+            WINDOW.refresh()
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -53,13 +68,13 @@ def game_loop():
                 game_over = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x_pos_change = -snake_block
+                    x_pos_change = snake_block - 1
                     y_pos_change = 0
                 elif event.key == pygame.K_RIGHT:
                     x_pos_change = snake_block
                     y_pos_change = 0
                 elif event.key == pygame.K_UP:
-                    y_pos_change = -snake_block
+                    y_pos_change = snake_block - 1
                     x_pos_change = 0
                 elif event.key == pygame.K_DOWN:
                     y_pos_change = snake_block
@@ -71,8 +86,8 @@ def game_loop():
         x_pos += x_pos_change
         y_pos += y_pos_change
 
-        window.fill(Colors.BLACK.value)
-        food.create_food()
+        WINDOW.fill(Colors.BLACK)
+        FOOD.create_food()
 
         head = {'x': x_pos, 'y': y_pos}
         snake_size.append(head)
@@ -84,23 +99,23 @@ def game_loop():
             if x == head:
                 close_game = True
 
-        snake.draw(snake_size, snake_block)
-        window.display_score(str(snake_length - 1))
-        window.refresh()
+        SNAKE.draw(snake_size, snake_block)
+        WINDOW.display_score(str(snake_length - 1))
+        WINDOW.refresh()
 
         if x_pos == Food.x_pos and y_pos == Food.y_pos:
-            food.random_position(snake_block)
+            FOOD.random_position(snake_block)
             snake_length += 1
 
-        window.snake_speed(Snake.SPEED)
+        WINDOW.snake_speed(Snake.SPEED)
 
     Windows.quit()
     sys.exit()
 
 
-window = setup(Window.MEDIUM_SIZE, Window.TITLE)
-block = Block(window)
-food = Food(copy(block), Colors.GREEN)
-snake = Python(copy(block), Colors.WHITE)
+WINDOW = setup(Window.MEDIUM_SIZE, Window.TITLE)
+BLOCK = Block(WINDOW)
+FOOD = Food(copy(BLOCK), Colors.GREEN)
+SNAKE = Python(copy(BLOCK), Colors.GRAY)
 
 game_loop()
