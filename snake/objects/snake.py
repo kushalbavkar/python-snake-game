@@ -27,5 +27,7 @@ class Snake:
         """
 
         for axis in snake:
-            self._block.set_block_size([axis['x'], axis['y'], size, size])
-            self._block.create_block()
+            # self._block.set_block_size([axis['x'], axis['y'], size, size])
+            # self._block.create_block()
+            self._block.set_circle_size((axis['x'], axis['y']), int(size/2))
+            self._block.create_circle()

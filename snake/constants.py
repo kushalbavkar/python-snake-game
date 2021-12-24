@@ -29,6 +29,7 @@ class Snake(Enum):
     BLOCK_SIZE = 10
     SPEED = 15
     RECT_SIZE = (30, 30, 60, 60)
+    CIRCLE_SIZE = ((30, 30), 5)
 
 
 class Font(Enum):

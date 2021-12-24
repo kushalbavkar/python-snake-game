@@ -58,6 +58,17 @@ class Windows:
 
         pygame.draw.rect(self._display, color, rect)
 
+    def draw_circle(self, color: tuple, coordinates: tuple, radius: int):
+        """ Draws a circle on display
+
+        Arguments:
+            color {tuple} -- Color of the circle
+            coordinates {tuple} -- tuple containing coordinates
+            radius {int} -- radius of circle
+        """
+
+        pygame.draw.circle(self._display, color, coordinates, radius)
+
     def fill(self, color: Colors):
         """ Fills the display with color
 

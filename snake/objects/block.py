@@ -17,11 +17,18 @@ class Block:
         self._window = window
         self._color = Colors.BLACK.value
         self._rect = Snake.RECT_SIZE.value
+        self._circle = Snake.CIRCLE_SIZE.value
 
     def create_block(self):
         """ Creates block on display"""
 
         self._window.draw_block(self._color, self._rect)
+
+    def create_circle(self):
+        """ Creates circle on display"""
+
+        coordinates, radius = self._circle
+        self._window.draw_circle(self._color, coordinates, radius)
 
     def set_block_color(self, color: Colors):
         """ Sets block color using specified Color value
@@ -40,3 +47,13 @@ class Block:
         """
 
         self._rect = rect
+
+    def set_circle_size(self, coordinates: tuple, radius: int):
+        """ Sets the size of circle using the dimensions
+
+        Arguments:
+            coordinates {tuple} -- tuple containing coordinates
+            radius {int} -- radius of circle
+        """
+
+        self._circle = coordinates, radius

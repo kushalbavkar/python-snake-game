@@ -40,10 +40,11 @@ class Food:
     def create_food(self):
         """ Creates food on display window """
 
-        rect = [Food.x_pos, Food.y_pos, Food.block_size, Food.block_size]
-        self._block.set_block_size(rect)
-
-        self._block.create_block()
+        # rect = [Food.x_pos, Food.y_pos, Food.block_size, Food.block_size]
+        # self._block.set_block_size(rect)
+        # self._block.create_block()
+        self._block.set_circle_size((Food.x_pos, Food.y_pos), int(Food.block_size/2))
+        self._block.create_circle()
 
     @staticmethod
     def _get_axis_value(value: int) -> float:
