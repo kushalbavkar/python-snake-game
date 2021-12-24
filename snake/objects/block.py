@@ -1,7 +1,7 @@
 """ Block module to work with block object """
 
-from constants import Colors, Snake
-from objects.window import Windows
+from snake.constants import Colors, Snake
+from snake.objects.window import Windows
 
 
 class Block:
@@ -19,7 +19,7 @@ class Block:
         self._rect = Snake.RECT_SIZE.value
 
     def create_block(self):
-        """ Creates rectange on display"""
+        """ Creates block on display"""
 
         self._window.draw_block(self._color, self._rect)
 

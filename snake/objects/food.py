@@ -2,9 +2,9 @@
 
 import random
 
-from constants import Colors
-from objects.block import Block
-from objects.window import Windows
+from snake.constants import Colors
+from snake.objects.block import Block
+from snake.objects.window import Windows
 
 
 class Food:
@@ -46,7 +46,7 @@ class Food:
         self._block.create_block()
 
     @staticmethod
-    def _get_axis_value(value: int) -> int:
+    def _get_axis_value(value: int) -> float:
         """ Create a random value use for display rect object
 
         Arguments:

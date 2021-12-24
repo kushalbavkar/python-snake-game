@@ -1,7 +1,7 @@
 """ Windows module to work with windows object """
 
 import pygame
-from constants import Colors, Font, Snake
+from snake.constants import Colors, Font, Snake
 
 
 class Windows:

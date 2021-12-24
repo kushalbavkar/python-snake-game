@@ -1,15 +1,14 @@
 """ PYGAME - Sample game for learning """
 
-import sys
 from copy import copy
 
 import pygame
 
-from constants import Colors, Snake, Window
-from objects.block import Block
-from objects.food import Food
-from objects.snake import Snake as Python
-from objects.window import Windows
+from snake.constants import Colors, Snake, Window
+from snake.objects.block import Block
+from snake.objects.food import Food
+from snake.objects.snake import Snake as Python
+from snake.objects.window import Windows
 
 
 def setup(display: Window, title: Window) -> Windows:
@@ -68,13 +67,13 @@ def game_loop():
                 game_over = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x_pos_change = snake_block - 1
+                    x_pos_change = -snake_block
                     y_pos_change = 0
                 elif event.key == pygame.K_RIGHT:
                     x_pos_change = snake_block
                     y_pos_change = 0
                 elif event.key == pygame.K_UP:
-                    y_pos_change = snake_block - 1
+                    y_pos_change = -snake_block
                     x_pos_change = 0
                 elif event.key == pygame.K_DOWN:
                     y_pos_change = snake_block
@@ -100,7 +99,7 @@ def game_loop():
                 close_game = True
 
         SNAKE.draw(snake_size, snake_block)
-        WINDOW.display_score(str(snake_length - 1))
+        WINDOW.display_score(snake_length - 1)
         WINDOW.refresh()
 
         if x_pos == Food.x_pos and y_pos == Food.y_pos:
@@ -110,12 +109,14 @@ def game_loop():
         WINDOW.snake_speed(Snake.SPEED)
 
     Windows.quit()
-    sys.exit()
+    quit()
 
 
-WINDOW = setup(Window.MEDIUM_SIZE, Window.TITLE)
-BLOCK = Block(WINDOW)
-FOOD = Food(copy(BLOCK), Colors.GREEN)
-SNAKE = Python(copy(BLOCK), Colors.GRAY)
+if __name__ == '__main__':
 
-game_loop()
+    WINDOW = setup(Window.MEDIUM_SIZE, Window.TITLE)
+    BLOCK = Block(WINDOW)
+    FOOD = Food(copy(BLOCK), Colors.GREEN)
+    SNAKE = Python(copy(BLOCK), Colors.GRAY)
+
+    game_loop()

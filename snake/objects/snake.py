@@ -1,7 +1,7 @@
 """ Snake module to work with snake object """
 
-from constants import Colors
-from objects.block import Block
+from snake.constants import Colors
+from snake.objects.block import Block
 
 
 class Snake:
