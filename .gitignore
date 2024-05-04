@@ -1,5 +1,5 @@
 .idea
 .venv
-Pipfile.lock
 __pycache__
-snake.py
+tmp
+poetry.toml
