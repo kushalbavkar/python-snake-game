@@ -15,7 +15,7 @@ def setup(display: Window, title: Window) -> Windows:
     """ Setup pygame display
 
     Arguments:
-        display {Window} -- Window enum conataining dimensions
+        display {Window} -- Window enum containing dimensions
         title {Window} -- Title
 
     Returns:
@@ -44,15 +44,15 @@ def game_loop():
     snake_size = []
     snake_length = 1
 
-    FOOD.random_position(snake_block)
+    food.random_position(snake_block)
 
     while not game_over:
 
         while close_game:
-            WINDOW.fill(Colors.BLACK)
-            WINDOW.display_score(snake_length - 1)
-            WINDOW.display_message()
-            WINDOW.refresh()
+            window.fill(Colors.BLACK)
+            window.display_score(snake_length - 1)
+            window.display_message()
+            window.refresh()
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -85,8 +85,8 @@ def game_loop():
         x_pos += x_pos_change
         y_pos += y_pos_change
 
-        WINDOW.fill(Colors.BLACK)
-        FOOD.create_food()
+        window.fill(Colors.BLACK)
+        food.create_food()
 
         head = {'x': x_pos, 'y': y_pos}
         snake_size.append(head)
@@ -98,15 +98,15 @@ def game_loop():
             if x == head:
                 close_game = True
 
-        SNAKE.draw(snake_size, snake_block)
-        WINDOW.display_score(snake_length - 1)
-        WINDOW.refresh()
+        snake.draw(snake_size, snake_block)
+        window.display_score(snake_length - 1)
+        window.refresh()
 
         if x_pos == Food.x_pos and y_pos == Food.y_pos:
-            FOOD.random_position(snake_block)
+            food.random_position(snake_block)
             snake_length += 1
 
-        WINDOW.snake_speed(Snake.SPEED)
+        window.snake_speed(Snake.SPEED)
 
     Windows.quit()
     quit()
@@ -114,9 +114,9 @@ def game_loop():
 
 if __name__ == '__main__':
 
-    WINDOW = setup(Window.MEDIUM_SIZE, Window.TITLE)
-    BLOCK = Block(WINDOW)
-    FOOD = Food(copy(BLOCK), Colors.GREEN)
-    SNAKE = Python(copy(BLOCK), Colors.GRAY)
+    window = setup(Window.MEDIUM_SIZE, Window.TITLE)
+    block = Block(window)
+    food = Food(copy(block), Colors.GREEN)
+    snake = Python(copy(block), Colors.GRAY)
 
     game_loop()

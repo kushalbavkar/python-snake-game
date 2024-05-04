@@ -36,9 +36,9 @@ Developed using pygame library.
 
      $ pip list
 
-### Start Game
+### Start Game (Post activation)
 
-      $ pipenv run python -m snake.main 
+      $ python -m snake.main 
 
 ## References
 

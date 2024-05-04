@@ -14,3 +14,7 @@ pygame = "~2.0.0"
 pep8 = "*"
 pylint = "*"
 autopep8 = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
