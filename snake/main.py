@@ -27,7 +27,7 @@ def setup(display: Window, title: Window) -> Windows:
     return obj
 
 
-def game_loop():
+def game_loop(window: Windows, food: Food, snake: Python):
     """ Runs game loop """
 
     snake_block = Snake.BLOCK_SIZE.value
@@ -60,7 +60,7 @@ def game_loop():
                         game_over = True
                         close_game = False
                     if event.key == pygame.K_c:
-                        game_loop()
+                        game_loop(window=window, food=food, snake=snake)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -112,11 +112,13 @@ def game_loop():
     quit()
 
 
-if __name__ == '__main__':
-
+def run() -> None:
     window = setup(Window.MEDIUM_SIZE, Window.TITLE)
     block = Block(window)
     food = Food(copy(block), Colors.GREEN)
     snake = Python(copy(block), Colors.GRAY)
+    game_loop(window=window, food=food, snake=snake)
 
-    game_loop()
+
+if __name__ == '__main__':
+    run()

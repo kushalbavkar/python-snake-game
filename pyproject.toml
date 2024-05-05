@@ -3,8 +3,17 @@ name = "python-snake-game"
 version = "0.0.1"
 description = "Python snake game"
 authors = ["Kushal Bavkar <bavkarkushal@gmail.com>"]
+maintainers = ["Kushal Bavkar <bavkarkushal@gmail.com>"]
 readme = "README.md"
-package-mode = false
+repository = "https://github.com/kushalbavkar/python-snake-game"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Games/Entertainment"
+]
+packages = [
+    { include = "snake" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -14,6 +23,9 @@ pygame = "~2.0.0"
 pep8 = "*"
 pylint = "*"
 autopep8 = "*"
+
+[tool.poetry.scripts]
+snake-game = 'snake.main:run'
 
 [build-system]
 requires = ["poetry-core"]

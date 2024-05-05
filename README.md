@@ -38,7 +38,7 @@ Developed using pygame library.
 
 ### Start Game (Post activation)
 
-      $ python -m snake.main 
+      $ snake-game
 
 ## References
 
